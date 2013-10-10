@@ -4,27 +4,13 @@
 	<meta charset="utf-8">
 	<title>Hendelser med jQuery</title>
 	<!-- Husk å legge til CSS filen din her" -->
-	<link rel="stylesheet" type="text/css" href="lab3_1css.css"/>
+	<link rel="stylesheet" type="text/css" href="css/farger.css">
 	<script src="js/jquery-1.8.1.js"></script>
-    <script>
+    	<script>
 
 	$(function() {
 		var canvas = $('#my_canvas');
-		#my_canvas { 
-    border: solid 3px;
-    width: 200px;
-    height: 200px;
-}
 
-#x {
-color: blue;
-font-weight: bold;
-}
-
-#y {
-color: purple;
-font-weight: bold;
-}
 
 		var canvasPosition = {
 			x: canvas.offset().left,
@@ -38,6 +24,18 @@ font-weight: bold;
 				x: e.pageX - canvasPosition.x,
 				y: e.pageY - canvasPosition.y
 			}
+			var cord = e.pageX + (",") + e.pageY;
+			
+			var cordx = e.pageX;
+			var cordy = e.pageY;
+			
+			console.log(cord);
+			
+			$("#keyx").html("Avstanden fra den venstre kanten av Canvas er");
+			$("#keyy").html("Avstanden fra den venstre kanten av Canvas er"); 
+			
+			$("#xred").addClass("red").html(cordx);
+			$("#yblue").addClass("blue").html(cordy);
 
 		
 		   	console.log(mouse.x + "," + mouse.y);
@@ -47,19 +45,28 @@ font-weight: bold;
 			 $("#x").html(mouse.x);
              $("#y").html(mouse.y);
 
-
-
-		});
-	}); 
-
-
-	</script>
+return false;
+});
+}); 
+</script>
 </head>
 <body>
+<p>Testside for å "fange" hendelser fra mus.</p>
+<p>
+<ul>
+<li>[1]Beregne (x,y) posisjon til Canvas DOM element på siden</li> 
+<li>[2]Finne den globale posisjonen til mus-kursøren i forhold til hele dokumentet</li> 
+<li>[3]For å lokalisere koordinatsenteret (0,0) til Canvas elementet i det øverste venstre hjørnet, og transformere globale koordinater til lokale koordinater, ta differansen mellom den globale museposisjonen beregnet i [2] og Canvas posisjonen fra [1] </li>
+</ul>
+</p>
+<br>
 
-	<canvas id="my_canvas" width="200" height="200"></canvas>
-	<!-- Oppgaveløsning skal implementeres her -->
-		<p>Avstand fra den venstre kanten av Canvas er <span id="x"></span></p>
-		<p>Avstand fra den venstre kanten av Canvas er <span id="y"></span></p>
+<canvas id="my_canvas"></canvas>
+<!-- Oppgaveløsning skal implementeres her -->
+
+<p>
+<span id="keyx"></span>  <span id="xred"></span> <br>
+<span id="keyy"></span>  <span id="yblue"></span>
+</p>	
 </body>
 </html>
