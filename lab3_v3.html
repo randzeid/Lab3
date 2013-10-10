@@ -1,92 +1,95 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Hendelser med jQuery</title>
-	
-	<script src="js/jquery-1.8.1.js"></script>
-	
-	<script src="js/jcanvas.min.js"></script>
+<meta charset="utf-8">
+<title>Hendelser med jQuery</title>
+<script src="js/jquery-1.8.1.js"></script>
+<!-- Setter inn jcanvas biblioteket som bygger på jQuery -->
+<script src="js/jcanvas.min.js"></script>
 
-	<!-- Husk å legge til CSS filen din her" -->
+<!-- Husk å legge til CSS filen din her" -->
+<link rel="stylesheet" href="css/farger.css">
 
-    <script>
-	$(function() {
-		var canvas = $('#my_canvas');
-
-		var canvasPosition = {
-			x: canvas.offset().left,
-			y: canvas.offset().top
-		};
-
-		canvas.on('click', function(e) {
+   <script>
+$(function() {
 
 
-			var mouse = {
-				x: e.pageX - canvasPosition.x,
-				y: e.pageY - canvasPosition.y
-			}
 
 
-			canvas.clearCanvas({
-				x: 0, y: 0,
-				width: canvas.width,
-				height: canvas.height
-			})
-			.drawText({
-				// Her besvares deloppgave 2 (se lenken til jCanvas dokumentasjon i oppgaveteksten)
-			});
+var canvas = $('#my_canvas');
 
-			return false;
-		});
-	}); 
-	function myFunction(e)
-{
-x=e.clientX;
-y=e.clientY;
-coor="Coordinates: (" + x + "," + y + ")";
-document.getElementById("demo").innerHTML=coor
+var canvasPosition = {
+x: canvas.offset().left,
+y: canvas.offset().top
+};
+
+canvas.on('click', function(e) {
+
+
+var mouse = {
+x: e.pageX - canvasPosition.x,
+y: e.pageY - canvasPosition.y
 }
 
-function clearCoor()
-{
-document.getElementById("demo").innerHTML="";
-}
+var cord = e.pageX + (",") + e.pageY;
 
-canvas.addEventListener("mousedown", getPosition, false);
 
-function getPosition(event)
-{
-  var x = event.x;
-  var y = event.y;
+var cordx = e.pageX;
+var cordy = e.pageY;
 
-  var canvas = document.getElementById("my_canvas");
+console.log(cord);
 
-  x -= canvas.offsetLeft;
-  y -= canvas.offsetTop;
+$("#keyx").html("Avstanden fra den venstre kanten av Canvas er " );
+$("#keyy").html("Avstanden fra den venstre kanten av Canvas er ");
 
-  alert("x:" + x + " y:" + y);
-}
 
-	</script>
+
+$("#xred").addClass("red").html(cordx);
+$("#yblue").addClass("blue").html(cordy);
+
+
+
+canvas.clearCanvas({
+
+x: 0, y: 0,
+width: canvas.width,
+height: canvas.height
+})
+
+
+
+.drawText({
+ fillStyle: "#9cf",
+ strokeStyle: "#25a",
+ strokeWidth: 1,
+ x: mouse.x, y: mouse.y,
+ font: "8pt Verdana, sans-serif",
+ text: mouse.x + " , " + mouse.y
+});
+
+return false;
+});
+}); 
+</script>
 </head>
 <body>
-	<p>Testside for å "fange" hendelser fra mus.</p>
-	<p>
-		<ul>
-			<li>[1]Beregne (x,y) posisjon til Canvas </li> 
-			<li>[2]Finne den globale posisjonen</li> 
-			<li>[3]For å lokalisere koordinatsenteret (0,0) til Canvas elementet </li>
-		</ul>
-	</p>
-	<canvas id="my_canvas" width="200" height="200"></canvas>
-	<div id="coordiv" style="width:200px;height:200px;border:1px solid" 
-	onmousemove="myFunction(event)" onmouseout="clearCoor()"></div>
+<p>Testside for å "fange" hendelser fra mus.</p>
+<p>
+<ul>
+<li>[1]Beregne (x,y) posisjon til Canvas DOM element på siden</li> 
+<li>[2]Finne den globale posisjonen til mus-kursøren i forhold til hele dokumentet</li> 
+<li>[3]For å lokalisere koordinatsenteret (0,0) til Canvas elementet i det øverste venstre hjørnet, og transformere globale koordinater til lokale koordinater, ta differansen mellom den globale museposisjonen beregnet i [2] og Canvas posisjonen fra [1] </li>
+</ul>
+</p>
+<canvas id="my_canvas" width="200" height="200"></canvas>
+<!-- Oppgaveløsning skal implementeres her -->
 
-<p>Avstand fra den venstre kanten av Canvas er </p>
-<p>Avstand fra den øverste kanten av Canvas er </p>
+<p>
+<span id="keyx"></span>  <span id="xred"></span> <br>
+<span id="keyy"></span>  <span id="yblue"></span>
+</p>
 
 
-<p id="demo"></p>
 </body>
 </html>
