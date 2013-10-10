@@ -1,3 +1,23 @@
 .blue {
-color:blue;}
+color: blue;
+font-weight:bold;
+}
 
+.green {
+color: green;
+}
+
+.yellow {
+color: yellow;
+}
+
+.red {
+color: red;
+font-weight:bold;
+}
+
+#my_canvas {
+border-style: solid;
+border-width: 1px;
+
+}
